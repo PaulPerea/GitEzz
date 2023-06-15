@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+
+<body>
+	<div class="container">
+		<header th:fragment="header"> </header>
+
+		<main>
+			<section style="width: 65%; float: left;">
+				<h1>Ingreso al sistema</h1>
+				<form action="/login" method="post" th:object="${usuario}">
+
+					<div class="form-group">
+						<input type="email" th:field="*{correo}" class="form-control"
+							id="inputCod" placeholder="Ingrese Usuario">
+					</div>
+					<div class="form-group">
+						<input type="password" th:field="*{clave}" class="form-control"
+							id="inputNom" placeholder="Ingrese Contraseña">
+					</div>
+					<button type="submit" class="btn btn-primary">Registrar</button>
+
+				</form>
+				<div th:class="${clase}" role="alert" th:text="${mensaje}"></div>
+			</section>
+		</main>
+		<footer th:fragment="footer">
+			<!-- jQuery library -->
+			<script
+				src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<!-- Popper JS -->
+			<script
+				src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+			<!-- Latest compiled JavaScript -->
+			<script
+				src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		</footer>
+	</div>
+
+</body>
+
+</html>

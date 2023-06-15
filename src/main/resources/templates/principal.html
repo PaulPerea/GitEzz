@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Insert title here</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+
+<body>
+	<div id="contenedor">
+		<header th:fragment="header">
+			<h1>Cabecera</h1>
+			<p>Ud se ha identificado como : <strong></strong></p>
+		</header>
+
+		<main>
+			<nav style="width: 25%;float: left;">
+				<ul>
+				<li><a href="/cargar">Mantenimiento Productos</a></li>
+				<li><a href="/reportes">Reportes</a></li>
+				<li><a href="/logout">Cerrar Session</a></li>
+				</ul>
+			</nav>
+			<section style="width: 65%;float: left;">
+				<h1>Bienvenidos</h1>
+			</section>
+		</main>
+		<footer th:fragment="footer">
+			<!-- jQuery library -->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<!-- Popper JS -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+			<!-- Latest compiled JavaScript -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		</footer>
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+	<div th:class="${clase}" role="alert" th:text="${mensaje}">This
+		is a success alert—check it out!</div>
+		<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+</div>
+	<div class="container">
+		<h1>Mantenimiento de Productos</h1>
+		<form action="/productos/guardar" method="post"
+			th:object="${producto}">
+
+			<div class="form-group">
+				<label for="inputCod">Código</label> <input type="text"
+					th:field="*{id_prod}" class="form-control" id="inputCod"
+					placeholder="Código">
+			</div>
+			<div class="form-group">
+				<label for="inputNom">Nombre</label> <input type="text"
+					th:field="*{des_prod}" class="form-control" id="inputNom"
+					placeholder="Nombre">
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="inputStk">Stock</label> <input type="number"
+						th:field="*{stk_prod}" class="form-control" id="inputStk"
+						placeholder="0">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputPrec">Precio</label> <input type="number"
+						step="0.01" th:field="*{pre_prod}" class="form-control"
+						id="inputPrec" placeholder="0.00">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<label for="inputCat">Categoría</label> <select id="inputCat"
+						class="form-control" th:field="*{idcategoria}">
+						<option value="-1">Seleccione...</option>
+						<option th:each="c : ${lstCategorias}" th:value="${c.idcategoria}"
+							th:text="${c.descripcion}"></option>
+					</select>
+
+				</div>
+				<div class="form-group col-md-4">
+					<label for="inputEstado">Estado</label> <select id="inputEstado"
+						class="form-control" th:field="*{est_prod}">
+						<option value="-1">Seleccione...</option>
+						<option value="1">Activo</option>
+						<option value="0">Eliminado</option>
+					</select>
+				</div>
+				<div class="form-group col-md-4">
+					<label for="inputProv">Proveedor</label> <select id="inputProv"
+						class="form-control" th:field="*{idproveedor}">
+						<option value="-1">Seleccione...</option>
+						<option th:each="p : ${lstProveedores}"
+							th:value="${p.idproveedor}" th:text="${p.nombre_rs}">Seleccione...</option>
+
+					</select>
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-primary" th:text="${boton}"></button>
+			<a href="/listado" class="btn btn-primary">Listado</a> 
+			<a href="/cargar" class="btn btn-primary">Nuevo</a>
+			<a href="/productos/listadopdf" class="btn btn-primary">PDF</a>
+			<a href="/pdf/stock" class="btn btn-primary">MAYOR Y MENOR STOCK</a>
+			<a href="/pdf/stock" class="btn btn-primary">MAYOR Y MENOR STOCK</a>
+				
+		</form>
+
+		<table class="table">
+			<thead>
+
+				<tr>
+				
+				<td></td>
+
+					<td>Código</td>
+
+					<td>Descripcion</td>
+
+					<td>Stock</td>
+
+					<td>Precio</td>
+
+					<td>Categoria</td>
+
+					<td>Estado</td>
+
+					<td>Proveedor</td>
+					<td></td>
+					<td></td>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="p : ${lstProducto}">
+				
+				<td><img alt="" th:src="${'img/productos/'+p.id_prod+'.png'}" width="100px"></td>
+
+					<td th:text="${p.id_prod}">id_prod</td>
+
+					<td th:text="${p.des_prod}">des_prod</td>
+
+					<td th:text="${p.stk_prod}">stk_prod</td>
+
+					<td th:text="${p.pre_prod}">pre_prod</td>
+
+					<td th:text="${p.objCategoria.descripcion}">idcategoria</td>
+
+					<td th:text="${p.est_prod}">est_prod</td>
+
+					<td th:text="${p.objProveedor.nombre_rs}">idproveedor</td>
+					<td>
+						<form action="/buscar" method="post">
+							<input type="hidden" name="id_prod" th:value="${p.id_prod}">
+							<button class="btn btn-primary">Editar</button>
+						</form>
+					</td>
+					<td>
+							<form action="/eliminar" method="post">
+							<input type="hidden" name="id_prod" th:value="${p.id_prod}">
+							<button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">Eliminar</button>
+							</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+</html>
